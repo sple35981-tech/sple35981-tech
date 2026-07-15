@@ -9,6 +9,8 @@ README = (ROOT / "README.md").read_text(encoding="utf-8")
 HTML = (ROOT / "docs/index.html").read_text(encoding="utf-8")
 SVG_PATH = ROOT / "assets/noxen-index.svg"
 SVG = SVG_PATH.read_text(encoding="utf-8")
+TAGLINE_PATH = ROOT / "assets/noxen-tagline-typewriter.svg"
+TAGLINE = TAGLINE_PATH.read_text(encoding="utf-8")
 DOCS_SVG_PATH = ROOT / "docs/noxen-index.svg"
 DOCS_SVG = DOCS_SVG_PATH.read_text(encoding="utf-8")
 
@@ -33,12 +35,14 @@ class LinkParser(HTMLParser):
 
 class ProfileTests(unittest.TestCase):
     def test_old_ai_profile_language_and_effects_are_absent(self):
-        combined = README + HTML + SVG
+        combined = README + HTML + SVG + TAGLINE
         for phrase in BANNED:
             self.assertNotIn(phrase.lower(), combined.lower(), phrase)
 
-    def test_readme_is_compact_and_points_to_cover(self):
+    def test_readme_is_compact_and_uses_two_svg_layers(self):
         self.assertIn("./assets/noxen-index.svg", README)
+        self.assertIn("./assets/noxen-tagline-typewriter.svg", README)
+        self.assertNotIn("<code>reverse engineering</code>", README)
         self.assertLess(len(README.splitlines()), 60)
         self.assertIn("keep the useful part", README)
         self.assertIn("claude-cc-switch-bat", README)
@@ -57,6 +61,18 @@ class ProfileTests(unittest.TestCase):
         self.assertNotIn("M816 48V312", SVG)
         self.assertNotRegex(SVG, r"<animate(?:Transform)?\b")
         self.assertNotRegex(SVG, r"Gradient\b")
+
+    def test_tagline_svg_is_centered_transparent_and_accessible(self):
+        root = ET.parse(TAGLINE_PATH).getroot()
+        self.assertTrue(root.tag.endswith("svg"))
+        self.assertEqual(root.attrib.get("viewBox"), "0 0 1200 64")
+        self.assertIn('x="336"', TAGLINE)
+        self.assertIn('width="528"', TAGLINE)
+        self.assertIn("@keyframes reveal", TAGLINE)
+        self.assertIn("@keyframes caret-move", TAGLINE)
+        self.assertIn("prefers-reduced-motion", TAGLINE)
+        self.assertNotRegex(TAGLINE, r'<rect[^>]+width="1200"[^>]+fill=')
+        self.assertNotRegex(TAGLINE, r"<script\b")
 
     def test_pages_site_uses_approved_signature_and_preserves_interactions(self):
         parser = LinkParser()

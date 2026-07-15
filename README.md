@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <code>reverse engineering</code>&nbsp;&nbsp;/&nbsp;&nbsp;<code>security tooling</code>&nbsp;&nbsp;/&nbsp;&nbsp;<code>odd experiments</code>
+  <img src="./assets/noxen-tagline-typewriter.svg" alt="reverse engineering / security tooling / odd experiments" width="100%" />
 </p>
 
 <br>
