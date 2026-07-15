@@ -16,6 +16,7 @@ BANNED = [
     "radialGradient", "<animate", "visitor counter", "skill bar",
 ]
 
+
 class LinkParser(HTMLParser):
     def __init__(self):
         super().__init__()
@@ -29,38 +30,51 @@ class LinkParser(HTMLParser):
         if tag == "script" and data.get("src"):
             self.scripts.append(data["src"])
 
+
 class ProfileTests(unittest.TestCase):
     def test_old_ai_profile_language_and_effects_are_absent(self):
         combined = README + HTML + SVG
         for phrase in BANNED:
             self.assertNotIn(phrase.lower(), combined.lower(), phrase)
 
-    def test_readme_is_compact_and_points_to_new_cover(self):
+    def test_readme_is_compact_and_points_to_cover(self):
         self.assertIn("./assets/noxen-index.svg", README)
         self.assertLess(len(README.splitlines()), 60)
         self.assertIn("keep the useful part", README)
         self.assertIn("claude-cc-switch-bat", README)
 
-    def test_svg_is_valid_static_monochrome_artwork(self):
+    def test_svg_is_valid_restrained_animated_artwork(self):
         root = ET.parse(SVG_PATH).getroot()
         self.assertTrue(root.tag.endswith("svg"))
         self.assertIn("Noxen", SVG)
         self.assertNotRegex(SVG, r"<animate(?:Transform)?\b")
         self.assertNotRegex(SVG, r"Gradient\b")
+        self.assertIn("@keyframes radar-sweep", SVG)
+        self.assertIn("@keyframes scan-pass", SVG)
+        self.assertIn("@media (prefers-reduced-motion: reduce)", SVG)
+        self.assertIn('class="sweep"', SVG)
+        self.assertIn('class="scan"', SVG)
 
-    def test_pages_site_has_no_external_script_dependency(self):
+    def test_pages_site_has_native_motion_and_no_external_script(self):
         parser = LinkParser()
         parser.feed(HTML)
         self.assertEqual(parser.scripts, [])
         self.assertTrue(any("claude-cc-switch-bat" in link for link in parser.links))
         self.assertIn("J / K TO MOVE", HTML)
         self.assertIn("prefers-reduced-motion", HTML)
+        self.assertIn('id="coordinates"', HTML)
+        self.assertIn('class="guide guide-x"', HTML)
+        self.assertIn('class="guide guide-y"', HTML)
+        self.assertIn("dataset.idle", HTML)
+        self.assertIn("--pointer-x", HTML)
+        self.assertIn("--pointer-y", HTML)
 
     def test_referenced_local_assets_exist(self):
         refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', README + HTML)
         for ref in refs:
             target = ROOT / ref[2:]
             self.assertTrue(target.exists(), f"missing {target}")
+
 
 if __name__ == "__main__":
     unittest.main()
