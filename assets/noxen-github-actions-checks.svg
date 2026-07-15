@@ -1,0 +1,204 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200"
+     height="210"
+     viewBox="0 0 1200 210"
+     role="img"
+     aria-labelledby="title desc">
+  <title id="title">Noxen profile checks</title>
+  <desc id="desc">A GitHub Actions inspired animated checklist. Three profile principles run and complete one after another.</desc>
+
+  <defs>
+    <filter id="soft-green" x="-250%" y="-250%" width="500%" height="500%">
+      <feGaussianBlur stdDeviation="2.4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    :root {
+      --bg: #0d1117;
+      --panel: #161b22;
+      --panel-hover: #1c2128;
+      --border: #30363d;
+      --border-soft: #21262d;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --green: #3fb950;
+      --green-soft: #238636;
+      --green-dark: #1a7f37;
+      --blue: #58a6ff;
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", ui-monospace,
+                   SFMono-Regular, Menlo, Consolas, monospace;
+      letter-spacing: .05px;
+    }
+
+    .outer { fill: var(--bg); }
+    .card { fill: var(--panel); stroke: var(--border); stroke-width: 1; }
+    .header-line, .row-line { stroke: var(--border-soft); stroke-width: 1; }
+    .header-title { fill: var(--text); font-size: 14px; font-weight: 600; }
+    .header-meta { fill: var(--muted); font-size: 12px; }
+    .repo-icon { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    .row { transform-box: fill-box; transform-origin: left center; opacity: .72; }
+    .row1 { animation: row1 10.5s cubic-bezier(.22,.75,.2,1) infinite; }
+    .row2 { animation: row2 10.5s cubic-bezier(.22,.75,.2,1) infinite; }
+    .row3 { animation: row3 10.5s cubic-bezier(.22,.75,.2,1) infinite; }
+    .row-bg { fill: transparent; }
+    .row-title { fill: var(--text); font-size: 14px; font-weight: 600; }
+    .row-sub { fill: var(--muted); font-size: 12px; }
+    .status-label { fill: var(--muted); font-size: 11px; }
+
+    .progress-track { stroke: var(--border); stroke-width: 2; stroke-linecap: round; }
+    .progress-value { stroke: var(--green); stroke-width: 2; stroke-linecap: round; pathLength: 1; stroke-dasharray: 1; stroke-dashoffset: 1; filter: url(#soft-green); }
+    .progress1 { animation: progress1 10.5s ease-in-out infinite; }
+    .progress2 { animation: progress2 10.5s ease-in-out infinite; }
+    .progress3 { animation: progress3 10.5s ease-in-out infinite; }
+
+    .queued-icon, .running-icon, .success-icon { transform-box: fill-box; transform-origin: center; }
+    .queued-icon { opacity: .58; }
+    .running-icon { opacity: 0; }
+    .success-icon { opacity: 0; transform: scale(.72); }
+
+    .row1 .queued-icon { animation: q1 10.5s steps(1,end) infinite; }
+    .row2 .queued-icon { animation: q2 10.5s steps(1,end) infinite; }
+    .row3 .queued-icon { animation: q3 10.5s steps(1,end) infinite; }
+    .row1 .running-icon { animation: r1 10.5s ease-in-out infinite, spin 1.1s linear infinite; }
+    .row2 .running-icon { animation: r2 10.5s ease-in-out infinite, spin 1.1s linear infinite; }
+    .row3 .running-icon { animation: r3 10.5s ease-in-out infinite, spin 1.1s linear infinite; }
+    .row1 .success-icon { animation: s1 10.5s cubic-bezier(.2,.8,.2,1) infinite; }
+    .row2 .success-icon { animation: s2 10.5s cubic-bezier(.2,.8,.2,1) infinite; }
+    .row3 .success-icon { animation: s3 10.5s cubic-bezier(.2,.8,.2,1) infinite; }
+
+    .status-running, .status-success, .status-queued { opacity: 0; }
+    .row1 .status-running { animation: sr1 10.5s ease-in-out infinite; }
+    .row2 .status-running { animation: sr2 10.5s ease-in-out infinite; }
+    .row3 .status-running { animation: sr3 10.5s ease-in-out infinite; }
+    .row1 .status-success { animation: ss1 10.5s ease-in-out infinite; }
+    .row2 .status-success { animation: ss2 10.5s ease-in-out infinite; }
+    .row3 .status-success { animation: ss3 10.5s ease-in-out infinite; }
+    .row1 .status-queued { animation: sq1 10.5s ease-in-out infinite; }
+    .row2 .status-queued { animation: sq2 10.5s ease-in-out infinite; }
+    .row3 .status-queued { animation: sq3 10.5s ease-in-out infinite; }
+
+    .summary-running, .summary-success { opacity: 0; }
+    .summary-running { animation: summary-running 10.5s ease-in-out infinite; }
+    .summary-success { animation: summary-success 10.5s ease-in-out infinite; }
+    .live-dot { fill: var(--green); transform-origin: 1050px 34px; animation: live-pulse 2.4s ease-in-out infinite; }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes live-pulse { 0%,100% { opacity: .95; transform: scale(1); } 50% { opacity: .35; transform: scale(1.45); } }
+    @keyframes row1 { 0%,28% { opacity: 1; transform: translateY(-1px); } 34%,100% { opacity: .72; transform: translateY(0); } }
+    @keyframes row2 { 0%,28% { opacity: .72; transform: translateY(0); } 34%,61% { opacity: 1; transform: translateY(-1px); } 67%,100% { opacity: .72; transform: translateY(0); } }
+    @keyframes row3 { 0%,61% { opacity: .72; transform: translateY(0); } 67%,94% { opacity: 1; transform: translateY(-1px); } 100% { opacity: .72; transform: translateY(0); } }
+    @keyframes progress1 { 0% { opacity: 1; stroke-dashoffset: 1; } 27% { opacity: 1; stroke-dashoffset: 0; } 33% { opacity: 0; stroke-dashoffset: 0; } 34%,100% { opacity: 0; stroke-dashoffset: 1; } }
+    @keyframes progress2 { 0%,33% { opacity: 0; stroke-dashoffset: 1; } 34% { opacity: 1; stroke-dashoffset: 1; } 60% { opacity: 1; stroke-dashoffset: 0; } 66% { opacity: 0; stroke-dashoffset: 0; } 67%,100% { opacity: 0; stroke-dashoffset: 1; } }
+    @keyframes progress3 { 0%,66% { opacity: 0; stroke-dashoffset: 1; } 67% { opacity: 1; stroke-dashoffset: 1; } 93% { opacity: 1; stroke-dashoffset: 0; } 99% { opacity: 0; stroke-dashoffset: 0; } 100% { opacity: 0; stroke-dashoffset: 1; } }
+    @keyframes q1 { 0%,100% { opacity: 0; } }
+    @keyframes q2 { 0%,33% { opacity: .58; } 34%,100% { opacity: 0; } }
+    @keyframes q3 { 0%,66% { opacity: .58; } 67%,100% { opacity: 0; } }
+    @keyframes r1 { 0%,27% { opacity: 1; } 33%,100% { opacity: 0; } }
+    @keyframes r2 { 0%,33% { opacity: 0; } 34%,60% { opacity: 1; } 66%,100% { opacity: 0; } }
+    @keyframes r3 { 0%,66% { opacity: 0; } 67%,93% { opacity: 1; } 99%,100% { opacity: 0; } }
+    @keyframes s1 { 0%,27% { opacity: 0; transform: scale(.72); } 33%,100% { opacity: 1; transform: scale(1); } }
+    @keyframes s2 { 0%,60% { opacity: 0; transform: scale(.72); } 66%,100% { opacity: 1; transform: scale(1); } }
+    @keyframes s3 { 0%,93% { opacity: 0; transform: scale(.72); } 99%,100% { opacity: 1; transform: scale(1); } }
+    @keyframes sr1 { 0%,27% { opacity: 1; } 33%,100% { opacity: 0; } }
+    @keyframes sr2 { 0%,33% { opacity: 0; } 34%,60% { opacity: 1; } 66%,100% { opacity: 0; } }
+    @keyframes sr3 { 0%,66% { opacity: 0; } 67%,93% { opacity: 1; } 99%,100% { opacity: 0; } }
+    @keyframes ss1 { 0%,27% { opacity: 0; } 33%,100% { opacity: 1; } }
+    @keyframes ss2 { 0%,60% { opacity: 0; } 66%,100% { opacity: 1; } }
+    @keyframes ss3 { 0%,93% { opacity: 0; } 99%,100% { opacity: 1; } }
+    @keyframes sq1 { 0%,100% { opacity: 0; } }
+    @keyframes sq2 { 0%,33% { opacity: 1; } 34%,100% { opacity: 0; } }
+    @keyframes sq3 { 0%,66% { opacity: 1; } 67%,100% { opacity: 0; } }
+    @keyframes summary-running { 0%,94% { opacity: 1; } 99%,100% { opacity: 0; } }
+    @keyframes summary-success { 0%,94% { opacity: 0; } 99%,100% { opacity: 1; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .row, .progress-value, .queued-icon, .running-icon, .success-icon,
+      .status-running, .status-success, .status-queued,
+      .summary-running, .summary-success, .live-dot { animation: none !important; }
+      .row { opacity: 1; transform: none; }
+      .queued-icon, .running-icon, .status-running, .status-queued, .summary-running { display: none; }
+      .success-icon, .status-success, .summary-success { opacity: 1; transform: none; }
+      .progress-value { stroke-dashoffset: 0; opacity: 1; }
+    }
+  </style>
+
+  <rect width="1200" height="210" class="outer"/>
+  <rect x="12" y="12" width="1176" height="186" rx="8" class="card"/>
+
+  <g transform="translate(30 0)">
+    <path class="repo-icon" d="M0 27h15v13H0zM0 27l4-6h7l4 6"/>
+    <text x="28" y="35" class="header-title">Noxen / profile checks</text>
+    <text x="210" y="35" class="header-meta">main</text>
+    <circle cx="1020" cy="34" r="4" class="live-dot"/>
+    <text x="1033" y="38" class="header-meta summary-running">1 check running</text>
+    <text x="1033" y="38" class="header-meta summary-success">3 checks passed</text>
+  </g>
+
+  <line x1="12" y1="58" x2="1188" y2="58" class="header-line"/>
+
+  <g class="row row1">
+    <rect x="22" y="66" width="1156" height="40" rx="6" class="row-bg"/>
+    <g transform="translate(42 85)">
+      <circle r="7.5" fill="none" stroke="#8b949e" stroke-width="1.6" class="queued-icon"/>
+      <path d="M-2.8 0h5.6" stroke="#8b949e" stroke-width="1.6" stroke-linecap="round" class="queued-icon"/>
+      <circle r="7.5" fill="none" stroke="#3fb950" stroke-width="1.7" stroke-dasharray="20 8" class="running-icon"/>
+      <circle r="8" fill="#238636" class="success-icon"/>
+      <path d="M-3 0l2.2 2.3L4-3" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="success-icon"/>
+    </g>
+    <text x="70" y="82" class="row-title">keep the useful part</text>
+    <text x="70" y="99" class="row-sub">Preserve the parts that remain practical.</text>
+    <line x1="655" y1="96" x2="950" y2="96" class="progress-track"/>
+    <line x1="655" y1="96" x2="950" y2="96" class="progress-value progress1"/>
+    <text x="1138" y="90" text-anchor="end" class="status-label status-running">In progress</text>
+    <text x="1138" y="90" text-anchor="end" class="status-label status-success">Passed</text>
+    <text x="1138" y="90" text-anchor="end" class="status-label status-queued">Queued</text>
+  </g>
+
+  <line x1="22" y1="110" x2="1178" y2="110" class="row-line"/>
+
+  <g class="row row2">
+    <rect x="22" y="112" width="1156" height="40" rx="6" class="row-bg"/>
+    <g transform="translate(42 131)">
+      <circle r="7.5" fill="none" stroke="#8b949e" stroke-width="1.6" class="queued-icon"/>
+      <path d="M-2.8 0h5.6" stroke="#8b949e" stroke-width="1.6" stroke-linecap="round" class="queued-icon"/>
+      <circle r="7.5" fill="none" stroke="#3fb950" stroke-width="1.7" stroke-dasharray="20 8" class="running-icon"/>
+      <circle r="8" fill="#238636" class="success-icon"/>
+      <path d="M-3 0l2.2 2.3L4-3" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="success-icon"/>
+    </g>
+    <text x="70" y="128" class="row-title">write down what failed</text>
+    <text x="70" y="145" class="row-sub">Record failures before moving forward.</text>
+    <line x1="655" y1="142" x2="950" y2="142" class="progress-track"/>
+    <line x1="655" y1="142" x2="950" y2="142" class="progress-value progress2"/>
+    <text x="1138" y="136" text-anchor="end" class="status-label status-running">In progress</text>
+    <text x="1138" y="136" text-anchor="end" class="status-label status-success">Passed</text>
+    <text x="1138" y="136" text-anchor="end" class="status-label status-queued">Queued</text>
+  </g>
+
+  <line x1="22" y1="156" x2="1178" y2="156" class="row-line"/>
+
+  <g class="row row3">
+    <rect x="22" y="158" width="1156" height="32" rx="6" class="row-bg"/>
+    <g transform="translate(42 176)">
+      <circle r="7.5" fill="none" stroke="#8b949e" stroke-width="1.6" class="queued-icon"/>
+      <path d="M-2.8 0h5.6" stroke="#8b949e" stroke-width="1.6" stroke-linecap="round" class="queued-icon"/>
+      <circle r="7.5" fill="none" stroke="#3fb950" stroke-width="1.7" stroke-dasharray="20 8" class="running-icon"/>
+      <circle r="8" fill="#238636" class="success-icon"/>
+      <path d="M-3 0l2.2 2.3L4-3" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" class="success-icon"/>
+    </g>
+    <text x="70" y="181" class="row-title">delete the decoration</text>
+    <line x1="655" y1="181" x2="950" y2="181" class="progress-track"/>
+    <line x1="655" y1="181" x2="950" y2="181" class="progress-value progress3"/>
+    <text x="1138" y="180" text-anchor="end" class="status-label status-running">In progress</text>
+    <text x="1138" y="180" text-anchor="end" class="status-label status-success">Passed</text>
+    <text x="1138" y="180" text-anchor="end" class="status-label status-queued">Queued</text>
+  </g>
+</svg>
