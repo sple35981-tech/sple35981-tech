@@ -13,12 +13,19 @@ TAGLINE_PATH = ROOT / "assets/noxen-tagline-typewriter.svg"
 TAGLINE = TAGLINE_PATH.read_text(encoding="utf-8")
 DOCS_SVG_PATH = ROOT / "docs/noxen-index.svg"
 DOCS_SVG = DOCS_SVG_PATH.read_text(encoding="utf-8")
+SNAKE_WORKFLOW_PATH = ROOT / ".github/workflows/snake.yml"
+SNAKE_WORKFLOW = (
+    SNAKE_WORKFLOW_PATH.read_text(encoding="utf-8")
+    if SNAKE_WORKFLOW_PATH.exists()
+    else ""
+)
 
 BANNED = [
     "SYSTEM ONLINE", "SIGNAL", "UNKNOWN ORIGIN", "ACCESS GRANTED",
     "ENTER THE SPACE", "three.min.js", "<canvas", "linearGradient",
     "radialGradient", "visitor counter", "skill bar", "glow",
 ]
+
 
 class LinkParser(HTMLParser):
     def __init__(self):
@@ -32,6 +39,7 @@ class LinkParser(HTMLParser):
             self.links.append(data["href"])
         if tag == "script" and data.get("src"):
             self.scripts.append(data["src"])
+
 
 class ProfileTests(unittest.TestCase):
     def test_old_ai_profile_language_and_effects_are_absent(self):
@@ -89,6 +97,31 @@ class ProfileTests(unittest.TestCase):
         self.assertIn("J", HTML.upper())
         self.assertIn("prefers-reduced-motion", HTML)
 
+    def test_contribution_snake_workflow_and_readme_embedding(self):
+        self.assertTrue(SNAKE_WORKFLOW_PATH.exists())
+        self.assertIn("workflow_dispatch:", SNAKE_WORKFLOW)
+        self.assertIn("schedule:", SNAKE_WORKFLOW)
+        self.assertIn("permissions:\n  contents: write", SNAKE_WORKFLOW)
+        self.assertIn("Platane/snk/svg-only@v3", SNAKE_WORKFLOW)
+        self.assertIn(
+            "crazy-max/ghaction-github-pages@v3.1.0",
+            SNAKE_WORKFLOW,
+        )
+        self.assertIn("target_branch: snake-output", SNAKE_WORKFLOW)
+        self.assertIn(
+            "dist/github-snake.svg?palette=github-light&color_snake=%233fb950",
+            SNAKE_WORKFLOW,
+        )
+        self.assertIn(
+            "dist/github-snake-dark.svg?palette=github-dark&color_snake=%233fb950",
+            SNAKE_WORKFLOW,
+        )
+        self.assertEqual(README.count("<picture>"), 1)
+        self.assertIn('(prefers-color-scheme: dark)', README)
+        self.assertIn('(prefers-color-scheme: light)', README)
+        self.assertIn("snake-output/github-snake-dark.svg", README)
+        self.assertIn("snake-output/github-snake.svg", README)
+
     def test_referenced_local_assets_exist(self):
         readme_refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', README)
         html_refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', HTML)
@@ -98,6 +131,7 @@ class ProfileTests(unittest.TestCase):
         for ref in html_refs:
             target = ROOT / "docs" / ref[2:]
             self.assertTrue(target.exists(), f"missing {target}")
+
 
 if __name__ == "__main__":
     unittest.main()
