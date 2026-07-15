@@ -9,6 +9,8 @@ README = (ROOT / "README.md").read_text(encoding="utf-8")
 HTML = (ROOT / "docs/index.html").read_text(encoding="utf-8")
 SVG_PATH = ROOT / "assets/noxen-index.svg"
 SVG = SVG_PATH.read_text(encoding="utf-8")
+DOCS_SVG_PATH = ROOT / "docs/noxen-index.svg"
+DOCS_SVG = DOCS_SVG_PATH.read_text(encoding="utf-8")
 
 BANNED = [
     "SYSTEM ONLINE", "SIGNAL", "UNKNOWN ORIGIN", "ACCESS GRANTED",
@@ -41,31 +43,44 @@ class ProfileTests(unittest.TestCase):
         self.assertIn("keep the useful part", README)
         self.assertIn("claude-cc-switch-bat", README)
 
-    def test_svg_uses_limited_css_motion_with_reduced_motion_fallback(self):
+    def test_svg_has_single_clean_signature_and_radar(self):
         root = ET.parse(SVG_PATH).getroot()
         self.assertTrue(root.tag.endswith("svg"))
-        self.assertIn("Noxen", SVG)
-        self.assertIn("@keyframes", SVG)
+        self.assertEqual(SVG.count('class="signature"'), 1)
+        self.assertIn('pathLength="1"', SVG)
+        self.assertIn("@keyframes signature-loop", SVG)
+        self.assertIn("stroke-dasharray:1", SVG)
+        self.assertIn('class="radar-arm"', SVG)
         self.assertIn("prefers-reduced-motion", SVG)
-        self.assertLessEqual(SVG.count("@keyframes"), 4)
+        self.assertNotIn("signature-under", SVG)
+        self.assertNotIn('stroke-dasharray="2 8"', SVG)
+        self.assertNotIn("M816 48V312", SVG)
         self.assertNotRegex(SVG, r"<animate(?:Transform)?\b")
         self.assertNotRegex(SVG, r"Gradient\b")
 
-    def test_pages_site_has_controlled_motion_and_no_external_dependency(self):
+    def test_pages_site_uses_approved_signature_and_preserves_interactions(self):
         parser = LinkParser()
         parser.feed(HTML)
         self.assertEqual(parser.scripts, [])
+        self.assertIn('src="./noxen-index.svg"', HTML)
+        self.assertEqual(DOCS_SVG, SVG)
+        self.assertNotIn('stroke-dasharray="2 8"', DOCS_SVG)
+        self.assertNotIn("M816 48V312", DOCS_SVG)
         self.assertIn('id="coordinates"', HTML)
         self.assertIn('class="motion-layer"', HTML)
         self.assertIn("--mx", HTML)
         self.assertIn("animationend", HTML)
+        self.assertIn("J", HTML.upper())
         self.assertIn("prefers-reduced-motion", HTML)
-        self.assertIn("event.key.toLowerCase()==='x'", HTML)
 
     def test_referenced_local_assets_exist(self):
-        refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', README + HTML)
-        for ref in refs:
+        readme_refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', README)
+        html_refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', HTML)
+        for ref in readme_refs:
             target = ROOT / ref[2:]
+            self.assertTrue(target.exists(), f"missing {target}")
+        for ref in html_refs:
+            target = ROOT / "docs" / ref[2:]
             self.assertTrue(target.exists(), f"missing {target}")
 
 if __name__ == "__main__":
