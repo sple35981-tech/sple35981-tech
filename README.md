@@ -1,73 +1,87 @@
 <p align="center">
-  <img src="./assets/banner.svg" alt="Noxen — AI Security, Reverse Engineering and Open Source" width="100%" />
+  <a href="https://sple35981-tech.github.io/sple35981-tech/">
+    <img src="./assets/noxen-core.svg" alt="Noxen Core — enter the space" width="100%" />
+  </a>
 </p>
 
 <p align="center">
-  <strong>Turning repetitive security work into tools that can be inspected, rerun and improved.</strong>
+  <code>SYSTEM ONLINE</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>NODE: NOXEN</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>ORIGIN: UNKNOWN</code>
 </p>
 
 <p align="center">
-  <a href="./assets/space-preview.svg">🌌 Space Preview</a>
-  ·
-  <a href="https://sple35981-tech.github.io/sple35981-tech/">🚀 Enter 3D Space</a>
-  ·
-  <a href="https://github.com/sple35981-tech/claude-cc-switch-bat">Featured repository</a>
-  ·
-  <a href="mailto:sple35981@gmail.com">Email</a>
+  <a href="https://sple35981-tech.github.io/sple35981-tech/"><strong>ENTER THE SPACE</strong></a>
+  &nbsp;&nbsp;·&nbsp;&nbsp;
+  <a href="https://github.com/sple35981-tech?tab=repositories">TRACE THE SIGNAL</a>
 </p>
 
-## About
+<br>
 
-I work across reverse engineering, security automation and local AI workflows. My focus is practical: build repeatable tooling, keep the process traceable, and document enough that the result can be tested instead of merely demonstrated.
+```text
+> wake noxen
 
-中文：主要折腾软件逆向、安全自动化、CTF、本地 AI 工作流和跨平台开发工具。
+[ OK ] identity core
+[ OK ] signal relay
+[ OK ] anomaly scanner
+[ .. ] locating origin
 
-## Current focus
-
-- AI-assisted reverse-engineering workflows with traceable outputs
-- Cross-platform developer and security environment automation
-- Offline knowledge systems for CTF practice and lab research
-- Small tools that reduce setup friction on Windows, Kali Linux and Ubuntu
-
-## 🌌 Noxen Space
-
-An interactive 3D showcase built with Three.js.
-
-Drag the planet, explore the space, and discover my projects.
-
-## Featured project
+result: no fixed coordinates
+```
 
 <table>
 <tr>
-<td width="72%" valign="top">
-<h3><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">claude-cc-switch-bat</a></h3>
-<p>A cross-platform installer and environment bootstrapper for Claude Code, Codex CLI, Hermes Agent and CC Switch.</p>
+<td width="33%" align="center">
+<sub>01 / REVERSE</sub><br><br>
+<strong>BREAK THE SURFACE</strong><br>
+<code>binary → behavior</code>
 </td>
-<td width="28%" valign="top">
-<strong>Focus</strong><br><br>
-Automation<br>
-Cross-platform<br>
-Developer tools
+<td width="33%" align="center">
+<sub>02 / SECURITY</sub><br><br>
+<strong>FOLLOW THE TRACE</strong><br>
+<code>signal → evidence</code>
+</td>
+<td width="33%" align="center">
+<sub>03 / AUTOMATION</sub><br><br>
+<strong>REPEAT THE IMPOSSIBLE</strong><br>
+<code>chaos → system</code>
 </td>
 </tr>
 </table>
 
-## Toolbox
+<br>
 
-`Python` · `Bash` · `PowerShell` · `Git` · `Docker`
+<p align="center">
+  <samp>
+    NO BIOGRAPHY&nbsp;&nbsp;·&nbsp;&nbsp;NO SKILL BARS&nbsp;&nbsp;·&nbsp;&nbsp;ONLY SIGNALS
+  </samp>
+</p>
 
-`Windows` · `Kali Linux` · `Ubuntu`
+<br>
 
-`Reverse Engineering` · `CTF` · `Security Automation` · `Local LLM Workflows`
-
-## Principles
+<details>
+<summary><strong>OPEN TRANSMISSION</strong></summary>
+<br>
 
 ```text
-Build for repeatability.
-Keep evidence traceable.
-Prefer working tools over impressive demos.
+01001110 01001111 01011000 01000101 01001110
+
+The interface is not the identity.
+The repository is not the destination.
+The signal continues elsewhere.
 ```
 
 <p align="center">
-  <sub>Security research should stay authorized, reproducible and useful.</sub>
+  <a href="https://github.com/sple35981-tech/claude-cc-switch-bat">NODE_01</a>
+  &nbsp;·&nbsp;
+  <a href="https://sple35981-tech.github.io/sple35981-tech/">NODE_∞</a>
+</p>
+</details>
+
+<br>
+
+<p align="center">
+  <img src="https://komarev.com/ghpvc/?username=sple35981-tech&label=SIGNAL%20RECEIVED&color=0e75b6&style=flat-square" alt="signal received" />
+</p>
+
+<p align="center">
+  <sub>AUTHORIZED ACCESS ONLY · LEAVE THE SYSTEM BETTER THAN YOU FOUND IT</sub>
 </p>
