@@ -11,6 +11,12 @@ SVG_PATH = ROOT / "assets/noxen-index.svg"
 SVG = SVG_PATH.read_text(encoding="utf-8")
 TAGLINE_PATH = ROOT / "assets/noxen-tagline-typewriter.svg"
 TAGLINE = TAGLINE_PATH.read_text(encoding="utf-8")
+REPOSITORY_SCAN_PATH = ROOT / "assets/noxen-repository-scan-clear-slow.svg"
+REPOSITORY_SCAN = (
+    REPOSITORY_SCAN_PATH.read_text(encoding="utf-8")
+    if REPOSITORY_SCAN_PATH.exists()
+    else ""
+)
 DOCS_SVG_PATH = ROOT / "docs/noxen-index.svg"
 DOCS_SVG = DOCS_SVG_PATH.read_text(encoding="utf-8")
 SNAKE_WORKFLOW_PATH = ROOT / ".github/workflows/snake.yml"
@@ -50,7 +56,9 @@ class ProfileTests(unittest.TestCase):
     def test_readme_is_compact_and_uses_profile_svg_layers(self):
         self.assertIn("./assets/noxen-index.svg", README)
         self.assertIn("./assets/noxen-tagline-typewriter.svg", README)
+        self.assertIn("./assets/noxen-repository-scan-clear-slow.svg", README)
         self.assertIn("./assets/noxen-github-actions-checks.svg", README)
+        self.assertNotIn("<table>", README)
         self.assertNotIn("<code>reverse engineering</code>", README)
         self.assertLess(len(README.splitlines()), 60)
         self.assertIn("claude-cc-switch-bat", README)
@@ -81,6 +89,20 @@ class ProfileTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion", TAGLINE)
         self.assertNotRegex(TAGLINE, r'<rect[^>]+width="1200"[^>]+fill=')
         self.assertNotRegex(TAGLINE, r"<script\b")
+
+    def test_repository_scan_svg_is_clear_slow_and_accessible(self):
+        self.assertTrue(REPOSITORY_SCAN_PATH.exists())
+        root = ET.parse(REPOSITORY_SCAN_PATH).getroot()
+        self.assertTrue(root.tag.endswith("svg"))
+        self.assertEqual(root.attrib.get("viewBox"), "0 0 1200 290")
+        self.assertIn("18s", REPOSITORY_SCAN)
+        self.assertIn("text-rendering: geometricPrecision", REPOSITORY_SCAN)
+        self.assertIn("prefers-reduced-motion", REPOSITORY_SCAN)
+        self.assertIn("claude-cc-switch-bat", REPOSITORY_SCAN)
+        self.assertIn("working set", REPOSITORY_SCAN)
+        self.assertIn("desk view", REPOSITORY_SCAN)
+        self.assertNotRegex(REPOSITORY_SCAN, r"<script\b")
+        self.assertNotRegex(REPOSITORY_SCAN, r"<animate(?:Transform)?\b")
 
     def test_pages_site_uses_approved_signature_and_preserves_interactions(self):
         parser = LinkParser()

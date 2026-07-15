@@ -1,0 +1,373 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1200"
+     height="290"
+     viewBox="0 0 1200 290"
+     role="img"
+     aria-labelledby="title desc">
+  <title id="title">Noxen repository scan clear slow version</title>
+  <desc id="desc">A slower, clearer GitHub-style repository scan panel with larger and sharper text, softer motion and consistent row rhythm.</desc>
+
+  <defs>
+    <linearGradient id="soft-sweep" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2ea043" stop-opacity="0"/>
+      <stop offset="0.45" stop-color="#2ea043" stop-opacity=".10"/>
+      <stop offset="1" stop-color="#2ea043" stop-opacity="0"/>
+    </linearGradient>
+
+    <clipPath id="clip-desc-1">
+      <rect class="reveal reveal1" x="420" y="58" width="0" height="42" rx="2"/>
+    </clipPath>
+    <clipPath id="clip-desc-2">
+      <rect class="reveal reveal2" x="420" y="140" width="0" height="42" rx="2"/>
+    </clipPath>
+    <clipPath id="clip-desc-3">
+      <rect class="reveal reveal3" x="420" y="222" width="0" height="42" rx="2"/>
+    </clipPath>
+  </defs>
+
+  <style>
+    :root {
+      --panel: #0d1117;
+      --row: #0d1117;
+      --row-active: #161b22;
+      --border: #30363d;
+      --border-soft: #21262d;
+      --text: #c9d1d9;
+      --muted: #8b949e;
+      --blue: #58a6ff;
+      --green: #3fb950;
+      --green-soft: #2ea043;
+      --green-track: #1a7f37;
+    }
+
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: 0;
+    }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .frame {
+      fill: var(--panel);
+      stroke: var(--border);
+      stroke-width: 1;
+    }
+
+    .row-sep {
+      stroke: var(--border);
+      stroke-width: 1;
+    }
+
+    .row-base {
+      fill: var(--row);
+    }
+
+    .row-active-bg {
+      fill: var(--row-active);
+      opacity: 0;
+    }
+
+    .row-sweep {
+      fill: url(#soft-sweep);
+      opacity: 0;
+    }
+
+    .badge-bg {
+      fill: #161b22;
+      stroke: var(--border-soft);
+    }
+
+    .badge-text {
+      fill: #f0f6fc;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .title {
+      fill: var(--blue);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .desc {
+      fill: var(--text);
+      font-size: 15.5px;
+      font-weight: 500;
+    }
+
+    .row {
+      transform-box: fill-box;
+      transform-origin: center;
+      opacity: .8;
+    }
+
+    .left-rail,
+    .status-dot,
+    .scan-value,
+    .scan-head {
+      opacity: 0;
+    }
+
+    .scan-track {
+      opacity: .2;
+    }
+
+    .scan-value {
+      pathLength: 1;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+      stroke-linecap: round;
+    }
+
+    .scan-head {
+      transform-box: fill-box;
+      transform-origin: left center;
+    }
+
+    .status-dot {
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .row1 { animation: row1-state 18s ease-in-out infinite; }
+    .row2 { animation: row2-state 18s ease-in-out infinite; }
+    .row3 { animation: row3-state 18s ease-in-out infinite; }
+
+    .row1 .row-active-bg { animation: active1 18s ease-in-out infinite; }
+    .row2 .row-active-bg { animation: active2 18s ease-in-out infinite; }
+    .row3 .row-active-bg { animation: active3 18s ease-in-out infinite; }
+
+    .row1 .row-sweep { animation: sweep1 18s ease-in-out infinite; }
+    .row2 .row-sweep { animation: sweep2 18s ease-in-out infinite; }
+    .row3 .row-sweep { animation: sweep3 18s ease-in-out infinite; }
+
+    .row1 .left-rail { animation: rail1 18s ease-in-out infinite; }
+    .row2 .left-rail { animation: rail2 18s ease-in-out infinite; }
+    .row3 .left-rail { animation: rail3 18s ease-in-out infinite; }
+
+    .row1 .status-dot { animation: dot1 18s ease-in-out infinite; }
+    .row2 .status-dot { animation: dot2 18s ease-in-out infinite; }
+    .row3 .status-dot { animation: dot3 18s ease-in-out infinite; }
+
+    .row1 .scan-value { animation: scan1 18s cubic-bezier(.22,.7,.18,1) infinite; }
+    .row2 .scan-value { animation: scan2 18s cubic-bezier(.22,.7,.18,1) infinite; }
+    .row3 .scan-value { animation: scan3 18s cubic-bezier(.22,.7,.18,1) infinite; }
+
+    .row1 .scan-head { animation: head1 18s cubic-bezier(.22,.7,.18,1) infinite; }
+    .row2 .scan-head { animation: head2 18s cubic-bezier(.22,.7,.18,1) infinite; }
+    .row3 .scan-head { animation: head3 18s cubic-bezier(.22,.7,.18,1) infinite; }
+
+    .row1 .title, .row1 .badge-bg, .row1 .badge-text, .row1 .desc { animation: text1 18s ease-in-out infinite; }
+    .row2 .title, .row2 .badge-bg, .row2 .badge-text, .row2 .desc { animation: text2 18s ease-in-out infinite; }
+    .row3 .title, .row3 .badge-bg, .row3 .badge-text, .row3 .desc { animation: text3 18s ease-in-out infinite; }
+
+    .reveal1 { animation: reveal1 18s cubic-bezier(.22,.7,.18,1) infinite; }
+    .reveal2 { animation: reveal2 18s cubic-bezier(.22,.7,.18,1) infinite; }
+    .reveal3 { animation: reveal3 18s cubic-bezier(.22,.7,.18,1) infinite; }
+
+    @keyframes row1-state {
+      0%, 31% { opacity: 1; transform: translateY(-1px); }
+      38%, 100% { opacity: .8; transform: translateY(0); }
+    }
+    @keyframes row2-state {
+      0%, 35% { opacity: .8; transform: translateY(0); }
+      42%, 64% { opacity: 1; transform: translateY(-1px); }
+      71%, 100% { opacity: .8; transform: translateY(0); }
+    }
+    @keyframes row3-state {
+      0%, 68% { opacity: .8; transform: translateY(0); }
+      75%, 97% { opacity: 1; transform: translateY(-1px); }
+      100% { opacity: .8; transform: translateY(0); }
+    }
+
+    @keyframes active1 { 0%, 32% { opacity: 1; } 38%,100% { opacity: 0; } }
+    @keyframes active2 { 0%, 41% { opacity: 0; } 42%, 65% { opacity: 1; } 71%,100% { opacity: 0; } }
+    @keyframes active3 { 0%, 74% { opacity: 0; } 75%, 98% { opacity: 1; } 100% { opacity: 0; } }
+
+    @keyframes sweep1 {
+      0%, 10% { opacity: 0; transform: translateX(-120px); }
+      14%, 29% { opacity: 1; transform: translateX(760px); }
+      38%,100% { opacity: 0; transform: translateX(860px); }
+    }
+    @keyframes sweep2 {
+      0%, 44% { opacity: 0; transform: translateX(-120px); }
+      48%, 62% { opacity: 1; transform: translateX(760px); }
+      71%,100% { opacity: 0; transform: translateX(860px); }
+    }
+    @keyframes sweep3 {
+      0%, 77% { opacity: 0; transform: translateX(-120px); }
+      81%, 95% { opacity: 1; transform: translateX(760px); }
+      100% { opacity: 0; transform: translateX(860px); }
+    }
+
+    @keyframes rail1 { 0%,32% { opacity: .92; } 38%,100% { opacity: 0; } }
+    @keyframes rail2 { 0%,41% { opacity: 0; } 42%,65% { opacity: .92; } 71%,100% { opacity: 0; } }
+    @keyframes rail3 { 0%,74% { opacity: 0; } 75%,98% { opacity: .92; } 100% { opacity: 0; } }
+
+    @keyframes dot1 {
+      0%, 28% { opacity: 0; transform: scale(.84); }
+      31%, 35% { opacity: .95; transform: scale(1.10); }
+      38%,100% { opacity: 0; transform: scale(.84); }
+    }
+    @keyframes dot2 {
+      0%, 61% { opacity: 0; transform: scale(.84); }
+      64%, 68% { opacity: .95; transform: scale(1.10); }
+      71%,100% { opacity: 0; transform: scale(.84); }
+    }
+    @keyframes dot3 {
+      0%, 94% { opacity: 0; transform: scale(.84); }
+      97%, 99% { opacity: .95; transform: scale(1.10); }
+      100% { opacity: 0; transform: scale(.84); }
+    }
+
+    @keyframes scan1 {
+      0%, 14% { opacity: 0; stroke-dashoffset: 1; }
+      17%, 29% { opacity: .9; stroke-dashoffset: 0; }
+      37%,100% { opacity: 0; stroke-dashoffset: 0; }
+    }
+    @keyframes scan2 {
+      0%, 48% { opacity: 0; stroke-dashoffset: 1; }
+      51%, 62% { opacity: .9; stroke-dashoffset: 0; }
+      70%,100% { opacity: 0; stroke-dashoffset: 0; }
+    }
+    @keyframes scan3 {
+      0%, 81% { opacity: 0; stroke-dashoffset: 1; }
+      84%, 95% { opacity: .9; stroke-dashoffset: 0; }
+      100% { opacity: 0; stroke-dashoffset: 0; }
+    }
+
+    @keyframes head1 {
+      0%, 14% { opacity: 0; transform: translateX(0); }
+      17%, 29% { opacity: 1; transform: translateX(310px); }
+      37%,100% { opacity: 0; transform: translateX(310px); }
+    }
+    @keyframes head2 {
+      0%, 48% { opacity: 0; transform: translateX(0); }
+      51%, 62% { opacity: 1; transform: translateX(310px); }
+      70%,100% { opacity: 0; transform: translateX(310px); }
+    }
+    @keyframes head3 {
+      0%, 81% { opacity: 0; transform: translateX(0); }
+      84%, 95% { opacity: 1; transform: translateX(310px); }
+      100% { opacity: 0; transform: translateX(310px); }
+    }
+
+    @keyframes text1 {
+      0%, 12% { opacity: .92; }
+      16%, 32% { opacity: 1; }
+      38%,100% { opacity: .95; }
+    }
+    @keyframes text2 {
+      0%, 46% { opacity: .95; }
+      50%, 65% { opacity: 1; }
+      71%,100% { opacity: .95; }
+    }
+    @keyframes text3 {
+      0%, 79% { opacity: .95; }
+      83%, 98% { opacity: 1; }
+      100% { opacity: .95; }
+    }
+
+    @keyframes reveal1 {
+      0%, 16% { width:0; }
+      30%, 38% { width:650px; }
+      100% { width:650px; }
+    }
+    @keyframes reveal2 {
+      0%, 50% { width:0; }
+      63%, 71% { width:650px; }
+      100% { width:650px; }
+    }
+    @keyframes reveal3 {
+      0%, 84% { width:0; }
+      96%, 100% { width:650px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .row, .row-active-bg, .row-sweep, .left-rail, .status-dot, .scan-value,
+      .scan-head, .title, .badge-bg, .badge-text, .desc, .reveal {
+        animation: none !important;
+      }
+      .row { opacity: 1; transform: none; }
+      .row-active-bg { opacity: 1; }
+      .row-sweep, .left-rail, .status-dot, .scan-value, .scan-head { display: none; }
+      .reveal { width: 650px; }
+    }
+  </style>
+
+  <rect x="20" y="20" width="1160" height="250" rx="8" class="frame"/>
+
+  <g class="row row1">
+    <rect x="20" y="20" width="1160" height="82" class="row-base"/>
+    <rect x="20" y="20" width="1160" height="82" class="row-active-bg"/>
+    <rect x="-140" y="20" width="200" height="82" class="row-sweep"/>
+    <rect x="20" y="20" width="4" height="82" class="left-rail" fill="#3fb950"/>
+    <rect x="40" y="48" width="52" height="24" rx="12" class="badge-bg"/>
+    <text x="66" y="64" text-anchor="middle" class="badge-text mono">0x01</text>
+    <text x="122" y="65" class="title">claude-cc-switch-bat</text>
+    <g clip-path="url(#clip-desc-1)">
+      <text x="420" y="66" class="desc">One command to assemble a usable AI coding environment</text>
+      <text x="420" y="86" class="desc">across Windows, Linux and macOS.</text>
+    </g>
+    <line x1="828" y1="68" x2="1138" y2="68" class="scan-track" stroke="#1a7f37"/>
+    <line x1="828" y1="68" x2="1138" y2="68" class="scan-value" stroke="#3fb950"/>
+    <g class="scan-head" transform="translate(828 68)">
+      <circle cx="-12" cy="0" r="2" fill="#3fb950" opacity=".14"/>
+      <circle cx="-7" cy="0" r="2.2" fill="#3fb950" opacity=".24"/>
+      <circle cx="0" cy="0" r="3.1" fill="#3fb950"/>
+    </g>
+    <circle cx="1150" cy="68" r="4.1" class="status-dot" fill="#3fb950"/>
+  </g>
+
+  <line x1="20" y1="102" x2="1180" y2="102" class="row-sep"/>
+
+  <g class="row row2">
+    <rect x="20" y="102" width="1160" height="82" class="row-base"/>
+    <rect x="20" y="102" width="1160" height="82" class="row-active-bg"/>
+    <rect x="-140" y="102" width="200" height="82" class="row-sweep"/>
+    <rect x="20" y="102" width="4" height="82" class="left-rail" fill="#3fb950"/>
+    <rect x="40" y="130" width="52" height="24" rx="12" class="badge-bg"/>
+    <text x="66" y="146" text-anchor="middle" class="badge-text mono">0x02</text>
+    <text x="122" y="147" class="title">working set</text>
+    <g clip-path="url(#clip-desc-2)">
+      <text x="420" y="148" class="desc">Scripts, unfinished tools and reverse-engineering notes</text>
+      <text x="420" y="168" class="desc">that were useful enough to keep.</text>
+    </g>
+    <line x1="828" y1="150" x2="1138" y2="150" class="scan-track" stroke="#1a7f37"/>
+    <line x1="828" y1="150" x2="1138" y2="150" class="scan-value" stroke="#3fb950"/>
+    <g class="scan-head" transform="translate(828 150)">
+      <circle cx="-12" cy="0" r="2" fill="#3fb950" opacity=".14"/>
+      <circle cx="-7" cy="0" r="2.2" fill="#3fb950" opacity=".24"/>
+      <circle cx="0" cy="0" r="3.1" fill="#3fb950"/>
+    </g>
+    <circle cx="1150" cy="150" r="4.1" class="status-dot" fill="#3fb950"/>
+  </g>
+
+  <line x1="20" y1="184" x2="1180" y2="184" class="row-sep"/>
+
+  <g class="row row3">
+    <rect x="20" y="184" width="1160" height="86" class="row-base"/>
+    <rect x="20" y="184" width="1160" height="86" class="row-active-bg"/>
+    <rect x="-140" y="184" width="200" height="86" class="row-sweep"/>
+    <rect x="20" y="184" width="4" height="86" class="left-rail" fill="#3fb950"/>
+    <rect x="40" y="214" width="52" height="24" rx="12" class="badge-bg"/>
+    <text x="66" y="230" text-anchor="middle" class="badge-text mono">0x03</text>
+    <text x="122" y="231" class="title">desk view</text>
+    <g clip-path="url(#clip-desc-3)">
+      <text x="420" y="232" class="desc">A calmer index of the same work with keyboard navigation</text>
+      <text x="420" y="252" class="desc">and fewer GitHub borders.</text>
+    </g>
+    <line x1="828" y1="234" x2="1138" y2="234" class="scan-track" stroke="#1a7f37"/>
+    <line x1="828" y1="234" x2="1138" y2="234" class="scan-value" stroke="#3fb950"/>
+    <g class="scan-head" transform="translate(828 234)">
+      <circle cx="-12" cy="0" r="2" fill="#3fb950" opacity=".14"/>
+      <circle cx="-7" cy="0" r="2.2" fill="#3fb950" opacity=".24"/>
+      <circle cx="0" cy="0" r="3.1" fill="#3fb950"/>
+    </g>
+    <circle cx="1150" cy="234" r="4.1" class="status-dot" fill="#3fb950"/>
+  </g>
+</svg>

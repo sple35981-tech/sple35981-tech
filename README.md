@@ -10,23 +10,11 @@
 
 <br>
 
-<table>
-<tr>
-<td width="13%"><code>0x01</code></td>
-<td width="30%"><strong><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">claude-cc-switch-bat</a></strong></td>
-<td>One command to assemble a usable AI coding environment across Windows, Linux and macOS.</td>
-</tr>
-<tr>
-<td><code>0x02</code></td>
-<td><strong><a href="https://github.com/sple35981-tech?tab=repositories">working set</a></strong></td>
-<td>Scripts, unfinished tools, reverse-engineering notes and things worth keeping.</td>
-</tr>
-<tr>
-<td><code>0x03</code></td>
-<td><strong><a href="https://sple35981-tech.github.io/sple35981-tech/">desk view</a></strong></td>
-<td>A quieter index of the same work, with keyboard navigation and fewer GitHub borders.</td>
-</tr>
-</table>
+<p align="center">
+  <a href="https://github.com/sple35981-tech?tab=repositories">
+    <img src="./assets/noxen-repository-scan-clear-slow.svg" alt="Noxen repository scan — claude-cc-switch-bat, working set and desk view" width="100%" />
+  </a>
+</p>
 
 <br>
 
