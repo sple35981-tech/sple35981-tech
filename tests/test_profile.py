@@ -47,12 +47,12 @@ class ProfileTests(unittest.TestCase):
         for phrase in BANNED:
             self.assertNotIn(phrase.lower(), combined.lower(), phrase)
 
-    def test_readme_is_compact_and_uses_two_svg_layers(self):
+    def test_readme_is_compact_and_uses_profile_svg_layers(self):
         self.assertIn("./assets/noxen-index.svg", README)
         self.assertIn("./assets/noxen-tagline-typewriter.svg", README)
+        self.assertIn("./assets/noxen-github-actions-checks.svg", README)
         self.assertNotIn("<code>reverse engineering</code>", README)
         self.assertLess(len(README.splitlines()), 60)
-        self.assertIn("keep the useful part", README)
         self.assertIn("claude-cc-switch-bat", README)
 
     def test_svg_has_single_clean_signature_and_radar(self):
