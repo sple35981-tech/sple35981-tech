@@ -7,7 +7,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/sple35981-tech?tab=repositories">Projects</a>
+  <a href="./assets/space-preview.svg">🌌 Space Preview</a>
+  ·
+  <a href="https://sple35981-tech.github.io/sple35981-tech/">🚀 Enter 3D Space</a>
   ·
   <a href="https://github.com/sple35981-tech/claude-cc-switch-bat">Featured repository</a>
   ·
@@ -27,23 +29,27 @@ I work across reverse engineering, security automation and local AI workflows. M
 - Offline knowledge systems for CTF practice and lab research
 - Small tools that reduce setup friction on Windows, Kali Linux and Ubuntu
 
+## 🌌 Noxen Space
+
+An interactive 3D showcase built with Three.js.
+
+Drag the planet, explore the space, and discover my projects.
+
 ## Featured project
 
 <table>
-  <tr>
-    <td width="72%" valign="top">
-      <h3><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">claude-cc-switch-bat</a></h3>
-      <p>A cross-platform installer and environment bootstrapper for Claude Code, Codex CLI, Hermes Agent and CC Switch.</p>
-      <p>Includes dry-run support, network checks, temporary proxy configuration and CI coverage across Windows, macOS and Linux.</p>
-    </td>
-    <td width="28%" valign="top">
-      <strong>Focus</strong><br><br>
-      Installation<br>
-      Automation<br>
-      Cross-platform<br>
-      China-friendly setup
-    </td>
-  </tr>
+<tr>
+<td width="72%" valign="top">
+<h3><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">claude-cc-switch-bat</a></h3>
+<p>A cross-platform installer and environment bootstrapper for Claude Code, Codex CLI, Hermes Agent and CC Switch.</p>
+</td>
+<td width="28%" valign="top">
+<strong>Focus</strong><br><br>
+Automation<br>
+Cross-platform<br>
+Developer tools
+</td>
+</tr>
 </table>
 
 ## Toolbox
@@ -61,14 +67,6 @@ Build for repeatability.
 Keep evidence traceable.
 Prefer working tools over impressive demos.
 ```
-
-<details>
-  <summary><strong>Why some projects are private</strong></summary>
-  <br>
-  Some reverse-engineering and security experiments remain private until their documentation, safety boundaries and reproduction steps are ready. Public repositories are intended to be understandable and usable without hidden context.
-</details>
-
-<br>
 
 <p align="center">
   <sub>Security research should stay authorized, reproducible and useful.</sub>
