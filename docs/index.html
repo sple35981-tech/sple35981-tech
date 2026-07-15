@@ -1,30 +1,37 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Noxen Space</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Noxen — a compact index of tools and experiments.">
+<title>Noxen / index</title>
 <style>
-:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;overflow:hidden;background:#020308;color:#e5eefb;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}canvas{position:fixed;inset:0;width:100%;height:100%}.hud{position:fixed;inset:0;pointer-events:none;padding:28px;display:flex;flex-direction:column;justify-content:space-between}.top,.bottom{display:flex;justify-content:space-between;gap:24px}.eyebrow{font-size:11px;letter-spacing:.25em;color:#64748b}.brand{margin-top:10px;font-size:clamp(28px,5vw,72px);letter-spacing:.22em;font-weight:600}.status{font-size:12px;line-height:1.9;text-align:right;color:#94a3b8}.status b{color:#38bdf8}.panel{pointer-events:auto;max-width:420px;padding:16px 18px;border:1px solid rgba(96,165,250,.18);background:rgba(2,3,8,.48);backdrop-filter:blur(14px);border-radius:14px}.panel p{margin:0 0 12px;color:#94a3b8;font-size:12px;line-height:1.7}.links{display:flex;flex-wrap:wrap;gap:10px}.links a{color:#dbeafe;text-decoration:none;border:1px solid rgba(167,139,250,.25);padding:9px 12px;border-radius:999px;font-size:11px;letter-spacing:.08em;transition:.25s}.links a:hover{border-color:#60a5fa;box-shadow:0 0 22px rgba(96,165,250,.22);transform:translateY(-2px)}.hint{align-self:flex-end;color:#64748b;font-size:11px;letter-spacing:.12em;text-align:right}@media(max-width:700px){.hud{padding:18px}.top{display:block}.status{text-align:left;margin-top:16px}.bottom{display:block}.hint{margin-top:14px;text-align:left}.brand{font-size:38px}}
+:root{--paper:#ecebe5;--ink:#151515;--muted:#77756e;--line:#cbc9c0;--accent:#c6382d;color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--paper:#121212;--ink:#e8e6df;--muted:#8c8a83;--line:#34332f;--accent:#e25749;color-scheme:dark}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;min-height:100vh}.shell{width:min(1180px,calc(100% - 36px));margin:auto;padding:28px 0 56px}.mast{display:grid;grid-template-columns:1fr auto;align-items:start;border-top:1px solid var(--ink);padding-top:14px}.mark{font-family:Arial,Helvetica,sans-serif;font-size:clamp(74px,15vw,196px);font-weight:700;letter-spacing:-.075em;line-height:.78;margin:54px 0 72px}.meta{text-align:right;color:var(--muted);font-size:11px;line-height:1.65}.rule{height:5px;background:var(--accent);width:64px}.layout{display:grid;grid-template-columns:130px minmax(0,1fr) 280px;border-top:1px solid var(--line)}.address,.notes{padding-top:18px;color:var(--muted);font-size:11px}.address div{margin-bottom:24px}.projects{border-left:1px solid var(--line);border-right:1px solid var(--line)}.project{display:grid;grid-template-columns:72px 1fr auto;gap:20px;align-items:start;padding:22px;border-bottom:1px solid var(--line);text-decoration:none;color:inherit;transition:background .18s ease}.project:hover,.project.active{background:color-mix(in srgb,var(--ink) 6%,transparent)}.project .num{color:var(--accent);font-size:11px}.project h2{font-family:Arial,Helvetica,sans-serif;margin:0 0 7px;font-size:clamp(19px,3vw,30px);letter-spacing:-.035em}.project p{margin:0;max-width:650px;color:var(--muted);font-size:12px;line-height:1.6}.project .arrow{font-size:18px}.notes{padding-left:20px}.notes h3{margin:0 0 24px;color:var(--ink);font-size:11px;font-weight:500}.note{border-top:1px solid var(--line);padding:12px 0;line-height:1.6}.footer{display:flex;justify-content:space-between;border-top:1px solid var(--ink);margin-top:68px;padding-top:12px;color:var(--muted);font-size:11px}.cursor{position:fixed;width:18px;height:18px;border:1px solid var(--accent);border-radius:50%;pointer-events:none;transform:translate(-50%,-50%);opacity:0;transition:opacity .2s;z-index:10}@media(pointer:fine){body:hover .cursor{opacity:.55}}@media(max-width:820px){.layout{grid-template-columns:1fr}.address,.notes{display:none}.projects{border-left:0;border-right:0}.mark{margin:44px 0 54px}.project{grid-template-columns:55px 1fr}.project .arrow{display:none}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.project{transition:none}.cursor{display:none}}
 </style>
 </head>
 <body>
-<canvas id="scene"></canvas>
-<div class="hud">
-  <div class="top"><div><div class="eyebrow">IDENTITY NODE / 07</div><div class="brand">NOXEN</div></div><div class="status">CORE <b>ONLINE</b><br>SIGNAL <b>STABLE</b><br>ORIGIN <b>UNKNOWN</b></div></div>
-  <div class="bottom"><div class="panel"><p>This is not a biography. It is a signal map. Drag the core, scroll through the field, and choose a node.</p><div class="links"><a href="https://github.com/sple35981-tech?tab=repositories">PROJECTS</a><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">NODE_01</a><a href="https://github.com/sple35981-tech">RETURN</a></div></div><div class="hint">DRAG TO ROTATE · SCROLL TO SHIFT · CLICK THE CORE</div></div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<div class="cursor" aria-hidden="true"></div>
+<main class="shell">
+  <header class="mast"><div><div class="rule"></div><div class="mark">Noxen</div></div><div class="meta">WORKING INDEX<br>REV. 2026.07<br>J / K TO MOVE</div></header>
+  <section class="layout" aria-label="Selected work">
+    <aside class="address" aria-hidden="true"><div>0x004E4F58</div><div>0x00454E20</div><div>0x00000003</div></aside>
+    <div class="projects">
+      <a class="project active" href="https://github.com/sple35981-tech/claude-cc-switch-bat"><span class="num">01</span><span><h2>claude-cc-switch-bat</h2><p>Cross-platform setup scripts for Claude Code, Codex CLI, Hermes Agent and CC Switch.</p></span><span class="arrow">↗</span></a>
+      <a class="project" href="https://github.com/sple35981-tech?tab=repositories"><span class="num">02</span><span><h2>working set</h2><p>Public scripts, experiments and tools that survived long enough to be kept.</p></span><span class="arrow">↗</span></a>
+      <a class="project" href="https://github.com/sple35981-tech"><span class="num">03</span><span><h2>github profile</h2><p>The compact version. No counters, trophies, typing banners or skill percentages.</p></span><span class="arrow">↗</span></a>
+    </div>
+    <aside class="notes"><h3>DESK NOTES</h3><div class="note">Keep the useful part.</div><div class="note">Write down what failed.</div><div class="note">Delete the decoration.</div><div class="note">Current tools: Python, Bash, PowerShell.</div></aside>
+  </section>
+  <footer class="footer"><span>NOXEN / 2026</span><span id="position">ITEM 01 / 03</span></footer>
+</main>
 <script>
-const canvas=document.querySelector('#scene'),scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x020308,.055);const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;
-const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,100);camera.position.set(0,0,6);
-scene.add(new THREE.AmbientLight(0x334155,1.8));const key=new THREE.PointLight(0x38bdf8,10,18);key.position.set(3,2,4);scene.add(key);const rim=new THREE.PointLight(0x8b5cf6,8,16);rim.position.set(-4,-1,2);scene.add(rim);
-const root=new THREE.Group();scene.add(root);
-const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.05,6),new THREE.MeshStandardMaterial({color:0x111827,metalness:.72,roughness:.22,emissive:0x172554,emissiveIntensity:1.2}));root.add(core);
-const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(1.09,2),new THREE.MeshBasicMaterial({color:0x60a5fa,wireframe:true,transparent:true,opacity:.22}));root.add(wire);
-[1.55,2.05,2.55].forEach((r,i)=>{const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.012,8,180),new THREE.MeshBasicMaterial({color:i===1?0xa78bfa:0x38bdf8,transparent:true,opacity:.38-i*.08}));ring.rotation.set(.4+i*.35,.2+i*.5,.15);ring.userData.speed=(i%2?-.0015:.0012)*(i+1);root.add(ring)});
-const stars=new THREE.BufferGeometry(),count=1800,pos=new Float32Array(count*3);for(let i=0;i<count;i++){const d=12+Math.random()*28,a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1);pos[i*3]=d*Math.sin(b)*Math.cos(a);pos[i*3+1]=d*Math.sin(b)*Math.sin(a);pos[i*3+2]=d*Math.cos(b)}stars.setAttribute('position',new THREE.BufferAttribute(pos,3));scene.add(new THREE.Points(stars,new THREE.PointsMaterial({color:0x94a3b8,size:.035,transparent:true,opacity:.75})));
-let dragging=false,lastX=0,lastY=0,targetX=0,targetY=0,zoom=6,pulse=0;addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY});addEventListener('pointerup',()=>dragging=false);addEventListener('pointermove',e=>{if(!dragging)return;targetY+=(e.clientX-lastX)*.006;targetX+=(e.clientY-lastY)*.006;lastX=e.clientX;lastY=e.clientY});addEventListener('wheel',e=>zoom=Math.max(3.6,Math.min(9,zoom+e.deltaY*.004)),{passive:true});addEventListener('click',()=>pulse=1);
-function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)}addEventListener('resize',resize);
-function animate(t){requestAnimationFrame(animate);core.rotation.y+=.0025;wire.rotation.x-=.0015;root.rotation.x+=(targetX-root.rotation.x)*.05;root.rotation.y+=(targetY-root.rotation.y)*.05;root.children.forEach(o=>{if(o.userData.speed)o.rotation.z+=o.userData.speed});camera.position.z+=(zoom-camera.position.z)*.05;scene.rotation.y=t*.000015;pulse*=.92;root.scale.setScalar(1+pulse*.08);renderer.render(scene,camera)}animate(0);
+const items=[...document.querySelectorAll('.project')],position=document.querySelector('#position'),cursor=document.querySelector('.cursor');let current=0;
+function select(next){current=(next+items.length)%items.length;items.forEach((item,index)=>item.classList.toggle('active',index===current));items[current].scrollIntoView({block:'nearest',behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});position.textContent=`ITEM ${String(current+1).padStart(2,'0')} / ${String(items.length).padStart(2,'0')}`}
+addEventListener('keydown',event=>{if(event.key.toLowerCase()==='j'||event.key==='ArrowDown'){event.preventDefault();select(current+1)}if(event.key.toLowerCase()==='k'||event.key==='ArrowUp'){event.preventDefault();select(current-1)}if(event.key==='Enter'){items[current].click()}});
+addEventListener('pointermove',event=>{cursor.style.left=`${event.clientX}px`;cursor.style.top=`${event.clientY}px`});
+items.forEach((item,index)=>item.addEventListener('mouseenter',()=>select(index)));
 </script>
-</body></html>
+</body>
+</html>
