@@ -1,87 +1,41 @@
 <p align="center">
   <a href="https://sple35981-tech.github.io/sple35981-tech/">
-    <img src="./assets/noxen-core.svg" alt="Noxen Core — enter the space" width="100%" />
+    <img src="./assets/noxen-index.svg" alt="Noxen — selected work and experiments" width="100%" />
   </a>
 </p>
 
 <p align="center">
-  <code>SYSTEM ONLINE</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>NODE: NOXEN</code>&nbsp;&nbsp;·&nbsp;&nbsp;<code>ORIGIN: UNKNOWN</code>
-</p>
-
-<p align="center">
-  <a href="https://sple35981-tech.github.io/sple35981-tech/"><strong>ENTER THE SPACE</strong></a>
-  &nbsp;&nbsp;·&nbsp;&nbsp;
-  <a href="https://github.com/sple35981-tech?tab=repositories">TRACE THE SIGNAL</a>
+  <code>reverse engineering</code>&nbsp;&nbsp;/&nbsp;&nbsp;<code>security tooling</code>&nbsp;&nbsp;/&nbsp;&nbsp;<code>odd experiments</code>
 </p>
 
 <br>
 
-```text
-> wake noxen
-
-[ OK ] identity core
-[ OK ] signal relay
-[ OK ] anomaly scanner
-[ .. ] locating origin
-
-result: no fixed coordinates
-```
-
 <table>
 <tr>
-<td width="33%" align="center">
-<sub>01 / REVERSE</sub><br><br>
-<strong>BREAK THE SURFACE</strong><br>
-<code>binary → behavior</code>
-</td>
-<td width="33%" align="center">
-<sub>02 / SECURITY</sub><br><br>
-<strong>FOLLOW THE TRACE</strong><br>
-<code>signal → evidence</code>
-</td>
-<td width="33%" align="center">
-<sub>03 / AUTOMATION</sub><br><br>
-<strong>REPEAT THE IMPOSSIBLE</strong><br>
-<code>chaos → system</code>
-</td>
+<td width="13%"><code>0x01</code></td>
+<td width="30%"><strong><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">claude-cc-switch-bat</a></strong></td>
+<td>One command to assemble a usable AI coding environment across Windows, Linux and macOS.</td>
+</tr>
+<tr>
+<td><code>0x02</code></td>
+<td><strong><a href="https://github.com/sple35981-tech?tab=repositories">working set</a></strong></td>
+<td>Scripts, unfinished tools, reverse-engineering notes and things worth keeping.</td>
+</tr>
+<tr>
+<td><code>0x03</code></td>
+<td><strong><a href="https://sple35981-tech.github.io/sple35981-tech/">desk view</a></strong></td>
+<td>A quieter index of the same work, with keyboard navigation and fewer GitHub borders.</td>
 </tr>
 </table>
 
 <br>
 
-<p align="center">
-  <samp>
-    NO BIOGRAPHY&nbsp;&nbsp;·&nbsp;&nbsp;NO SKILL BARS&nbsp;&nbsp;·&nbsp;&nbsp;ONLY SIGNALS
-  </samp>
-</p>
-
-<br>
-
-<details>
-<summary><strong>OPEN TRANSMISSION</strong></summary>
-<br>
-
 ```text
-01001110 01001111 01011000 01000101 01001110
-
-The interface is not the identity.
-The repository is not the destination.
-The signal continues elsewhere.
+keep the useful part
+write down what failed
+delete the decoration
 ```
 
-<p align="center">
-  <a href="https://github.com/sple35981-tech/claude-cc-switch-bat">NODE_01</a>
-  &nbsp;·&nbsp;
-  <a href="https://sple35981-tech.github.io/sple35981-tech/">NODE_∞</a>
-</p>
-</details>
-
-<br>
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=sple35981-tech&label=SIGNAL%20RECEIVED&color=0e75b6&style=flat-square" alt="signal received" />
-</p>
-
-<p align="center">
-  <sub>AUTHORIZED ACCESS ONLY · LEAVE THE SYSTEM BETTER THAN YOU FOUND IT</sub>
+<p align="right">
+  <sub>Noxen / 2026</sub>
 </p>
