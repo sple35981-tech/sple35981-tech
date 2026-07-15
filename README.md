@@ -30,6 +30,4 @@ A cross-platform installer for Claude Code, Codex CLI, Hermes Agent, and CC Swit
 
 Some reverse-engineering and security experiments stay private until the documentation, safety boundaries, and reproduction steps are in good shape.
 
-## Contact
-
-[sple35981@gmail.com](mailto:sple35981@gmail.com)
+For project-specific questions, please use the issue tracker in the relevant repository.
