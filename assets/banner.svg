@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">Noxen GitHub profile banner</title>
+  <desc id="desc">Minimal dark banner for Noxen, focused on AI security, reverse engineering and open-source tooling.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1117"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#58a6ff"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-opacity="0.035"/>
+    </pattern>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="320" rx="24" fill="url(#bg)"/>
+  <rect width="1200" height="320" rx="24" fill="url(#grid)"/>
+  <circle cx="1020" cy="70" r="120" fill="#7c3aed" opacity="0.12" filter="url(#glow)"/>
+  <circle cx="170" cy="280" r="110" fill="#58a6ff" opacity="0.10" filter="url(#glow)"/>
+
+  <g transform="translate(82 70)">
+    <rect x="0" y="0" width="8" height="152" rx="4" fill="url(#accent)"/>
+    <text x="36" y="63" fill="#f0f6fc" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="58" font-weight="700" letter-spacing="11">NOXEN</text>
+    <text x="39" y="107" fill="#9da7b3" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="20" letter-spacing="2">AI SECURITY · REVERSE ENGINEERING · OPEN SOURCE</text>
+    <text x="39" y="149" fill="#6e7681" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16">Building practical tools for security research and automation.</text>
+  </g>
+
+  <g transform="translate(935 207)" fill="none" stroke="url(#accent)" stroke-width="2" opacity="0.75">
+    <path d="M0 30h44l16-24 25 48 18-30h62"/>
+    <circle cx="0" cy="30" r="4" fill="#58a6ff" stroke="none"/>
+    <circle cx="165" cy="24" r="4" fill="#8b5cf6" stroke="none"/>
+  </g>
+</svg>
