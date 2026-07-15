@@ -30,11 +30,9 @@
 
 <br>
 
-```text
-keep the useful part
-write down what failed
-delete the decoration
-```
+<p align="center">
+  <img src="./assets/noxen-github-actions-checks.svg" alt="Noxen profile checks — keep useful work, document failures, remove decoration" width="100%" />
+</p>
 
 <p align="right">
   <sub>Noxen / 2026</sub>
