@@ -1,11 +1,30 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Noxen Space</title><style>body{margin:0;background:#050816;color:white;overflow:hidden;font-family:Inter,Arial}canvas{width:100vw;height:100vh}#tip{position:fixed;top:30px;width:100%;text-align:center;letter-spacing:4px}</style></head>
-<body><div id="tip">NOXEN SPACE · AI SECURITY · REVERSE ENGINEERING</div><canvas id="c"></canvas><script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script><script>
-const s=new THREE.Scene();s.background=new THREE.Color(0x050816);const c=document.getElementById('c');const r=new THREE.WebGLRenderer({canvas:c,antialias:true});r.setSize(innerWidth,innerHeight);
-const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,100);cam.position.z=4;
-const light=new THREE.PointLight(0x66ccff,3);light.position.set(2,2,3);s.add(light);s.add(new THREE.AmbientLight(0x334466));
-const planet=new THREE.Mesh(new THREE.SphereGeometry(1,64,64),new THREE.MeshStandardMaterial({color:0x2563eb,roughness:.8}));s.add(planet);
-const ring=new THREE.Mesh(new THREE.TorusGeometry(1.45,.015,16,120),new THREE.MeshBasicMaterial({color:0x7dd3fc}));ring.rotation.x=.4;s.add(ring);
-let drag=false,px=0;addEventListener('pointerdown',e=>{drag=true;px=e.clientX});addEventListener('pointerup',()=>drag=false);addEventListener('pointermove',e=>{if(drag)planet.rotation.y+=(e.clientX-px)*.01,px=e.clientX});
-function a(){requestAnimationFrame(a);planet.rotation.y+=.002;ring.rotation.z+=.001;r.render(s,cam)}a();
-</script></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noxen Space</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}body{margin:0;overflow:hidden;background:#020308;color:#e5eefb;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}canvas{position:fixed;inset:0;width:100%;height:100%}.hud{position:fixed;inset:0;pointer-events:none;padding:28px;display:flex;flex-direction:column;justify-content:space-between}.top,.bottom{display:flex;justify-content:space-between;gap:24px}.eyebrow{font-size:11px;letter-spacing:.25em;color:#64748b}.brand{margin-top:10px;font-size:clamp(28px,5vw,72px);letter-spacing:.22em;font-weight:600}.status{font-size:12px;line-height:1.9;text-align:right;color:#94a3b8}.status b{color:#38bdf8}.panel{pointer-events:auto;max-width:420px;padding:16px 18px;border:1px solid rgba(96,165,250,.18);background:rgba(2,3,8,.48);backdrop-filter:blur(14px);border-radius:14px}.panel p{margin:0 0 12px;color:#94a3b8;font-size:12px;line-height:1.7}.links{display:flex;flex-wrap:wrap;gap:10px}.links a{color:#dbeafe;text-decoration:none;border:1px solid rgba(167,139,250,.25);padding:9px 12px;border-radius:999px;font-size:11px;letter-spacing:.08em;transition:.25s}.links a:hover{border-color:#60a5fa;box-shadow:0 0 22px rgba(96,165,250,.22);transform:translateY(-2px)}.hint{align-self:flex-end;color:#64748b;font-size:11px;letter-spacing:.12em;text-align:right}@media(max-width:700px){.hud{padding:18px}.top{display:block}.status{text-align:left;margin-top:16px}.bottom{display:block}.hint{margin-top:14px;text-align:left}.brand{font-size:38px}}
+</style>
+</head>
+<body>
+<canvas id="scene"></canvas>
+<div class="hud">
+  <div class="top"><div><div class="eyebrow">IDENTITY NODE / 07</div><div class="brand">NOXEN</div></div><div class="status">CORE <b>ONLINE</b><br>SIGNAL <b>STABLE</b><br>ORIGIN <b>UNKNOWN</b></div></div>
+  <div class="bottom"><div class="panel"><p>This is not a biography. It is a signal map. Drag the core, scroll through the field, and choose a node.</p><div class="links"><a href="https://github.com/sple35981-tech?tab=repositories">PROJECTS</a><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">NODE_01</a><a href="https://github.com/sple35981-tech">RETURN</a></div></div><div class="hint">DRAG TO ROTATE · SCROLL TO SHIFT · CLICK THE CORE</div></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+const canvas=document.querySelector('#scene'),scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x020308,.055);const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.setSize(innerWidth,innerHeight);renderer.outputColorSpace=THREE.SRGBColorSpace;
+const camera=new THREE.PerspectiveCamera(48,innerWidth/innerHeight,.1,100);camera.position.set(0,0,6);
+scene.add(new THREE.AmbientLight(0x334155,1.8));const key=new THREE.PointLight(0x38bdf8,10,18);key.position.set(3,2,4);scene.add(key);const rim=new THREE.PointLight(0x8b5cf6,8,16);rim.position.set(-4,-1,2);scene.add(rim);
+const root=new THREE.Group();scene.add(root);
+const core=new THREE.Mesh(new THREE.IcosahedronGeometry(1.05,6),new THREE.MeshStandardMaterial({color:0x111827,metalness:.72,roughness:.22,emissive:0x172554,emissiveIntensity:1.2}));root.add(core);
+const wire=new THREE.Mesh(new THREE.IcosahedronGeometry(1.09,2),new THREE.MeshBasicMaterial({color:0x60a5fa,wireframe:true,transparent:true,opacity:.22}));root.add(wire);
+[1.55,2.05,2.55].forEach((r,i)=>{const ring=new THREE.Mesh(new THREE.TorusGeometry(r,.012,8,180),new THREE.MeshBasicMaterial({color:i===1?0xa78bfa:0x38bdf8,transparent:true,opacity:.38-i*.08}));ring.rotation.set(.4+i*.35,.2+i*.5,.15);ring.userData.speed=(i%2?-.0015:.0012)*(i+1);root.add(ring)});
+const stars=new THREE.BufferGeometry(),count=1800,pos=new Float32Array(count*3);for(let i=0;i<count;i++){const d=12+Math.random()*28,a=Math.random()*Math.PI*2,b=Math.acos(2*Math.random()-1);pos[i*3]=d*Math.sin(b)*Math.cos(a);pos[i*3+1]=d*Math.sin(b)*Math.sin(a);pos[i*3+2]=d*Math.cos(b)}stars.setAttribute('position',new THREE.BufferAttribute(pos,3));scene.add(new THREE.Points(stars,new THREE.PointsMaterial({color:0x94a3b8,size:.035,transparent:true,opacity:.75})));
+let dragging=false,lastX=0,lastY=0,targetX=0,targetY=0,zoom=6,pulse=0;addEventListener('pointerdown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY});addEventListener('pointerup',()=>dragging=false);addEventListener('pointermove',e=>{if(!dragging)return;targetY+=(e.clientX-lastX)*.006;targetX+=(e.clientY-lastY)*.006;lastX=e.clientX;lastY=e.clientY});addEventListener('wheel',e=>zoom=Math.max(3.6,Math.min(9,zoom+e.deltaY*.004)),{passive:true});addEventListener('click',()=>pulse=1);
+function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)}addEventListener('resize',resize);
+function animate(t){requestAnimationFrame(animate);core.rotation.y+=.0025;wire.rotation.x-=.0015;root.rotation.x+=(targetX-root.rotation.x)*.05;root.rotation.y+=(targetY-root.rotation.y)*.05;root.children.forEach(o=>{if(o.userData.speed)o.rotation.z+=o.userData.speed});camera.position.z+=(zoom-camera.position.z)*.05;scene.rotation.y=t*.000015;pulse*=.92;root.scale.setScalar(1+pulse*.08);renderer.render(scene,camera)}animate(0);
+</script>
+</body></html>
