@@ -13,7 +13,7 @@ SVG = SVG_PATH.read_text(encoding="utf-8")
 BANNED = [
     "SYSTEM ONLINE", "SIGNAL", "UNKNOWN ORIGIN", "ACCESS GRANTED",
     "ENTER THE SPACE", "three.min.js", "<canvas", "linearGradient",
-    "radialGradient", "<animate", "visitor counter", "skill bar",
+    "radialGradient", "visitor counter", "skill bar", "glow",
 ]
 
 class LinkParser(HTMLParser):
@@ -35,26 +35,32 @@ class ProfileTests(unittest.TestCase):
         for phrase in BANNED:
             self.assertNotIn(phrase.lower(), combined.lower(), phrase)
 
-    def test_readme_is_compact_and_points_to_new_cover(self):
+    def test_readme_is_compact_and_points_to_cover(self):
         self.assertIn("./assets/noxen-index.svg", README)
         self.assertLess(len(README.splitlines()), 60)
         self.assertIn("keep the useful part", README)
         self.assertIn("claude-cc-switch-bat", README)
 
-    def test_svg_is_valid_static_monochrome_artwork(self):
+    def test_svg_uses_limited_css_motion_with_reduced_motion_fallback(self):
         root = ET.parse(SVG_PATH).getroot()
         self.assertTrue(root.tag.endswith("svg"))
         self.assertIn("Noxen", SVG)
+        self.assertIn("@keyframes", SVG)
+        self.assertIn("prefers-reduced-motion", SVG)
+        self.assertLessEqual(SVG.count("@keyframes"), 4)
         self.assertNotRegex(SVG, r"<animate(?:Transform)?\b")
         self.assertNotRegex(SVG, r"Gradient\b")
 
-    def test_pages_site_has_no_external_script_dependency(self):
+    def test_pages_site_has_controlled_motion_and_no_external_dependency(self):
         parser = LinkParser()
         parser.feed(HTML)
         self.assertEqual(parser.scripts, [])
-        self.assertTrue(any("claude-cc-switch-bat" in link for link in parser.links))
-        self.assertIn("J / K TO MOVE", HTML)
+        self.assertIn('id="coordinates"', HTML)
+        self.assertIn('class="motion-layer"', HTML)
+        self.assertIn("--mx", HTML)
+        self.assertIn("animationend", HTML)
         self.assertIn("prefers-reduced-motion", HTML)
+        self.assertIn("event.key.toLowerCase()==='x'", HTML)
 
     def test_referenced_local_assets_exist(self):
         refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', README + HTML)
