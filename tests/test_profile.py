@@ -21,6 +21,7 @@ class LinkParser(HTMLParser):
         super().__init__()
         self.links = []
         self.scripts = []
+
     def handle_starttag(self, tag, attrs):
         data = dict(attrs)
         if tag == "a" and data.get("href"):
@@ -44,22 +45,22 @@ class ProfileTests(unittest.TestCase):
         root = ET.parse(SVG_PATH).getroot()
         self.assertTrue(root.tag.endswith("svg"))
         self.assertIn("Noxen", SVG)
-        self.assertNotRegex(SVG, r"<animate(?:Transform)?\\b")
-        self.assertNotRegex(SVG, r"Gradient\\b")
+        self.assertNotRegex(SVG, r"<animate(?:Transform)?\b")
+        self.assertNotRegex(SVG, r"Gradient\b")
 
     def test_pages_site_has_no_external_script_dependency(self):
-        parser = LinkParser(); parser.feed(HTML)
+        parser = LinkParser()
+        parser.feed(HTML)
         self.assertEqual(parser.scripts, [])
         self.assertTrue(any("claude-cc-switch-bat" in link for link in parser.links))
         self.assertIn("J / K TO MOVE", HTML)
         self.assertIn("prefers-reduced-motion", HTML)
 
     def test_referenced_local_assets_exist(self):
-        refs = re.findall(r'(?:src|href)=["\\'](\\.?\\.?/[^"\\']+)["\\']', README + HTML)
+        refs = re.findall(r'(?:src|href)=["\'](\./[^"\']+)["\']', README + HTML)
         for ref in refs:
-            if ref.startswith("./"):
-                target = ROOT / ref[2:]
-                self.assertTrue(target.exists(), f"missing {target}")
+            target = ROOT / ref[2:]
+            self.assertTrue(target.exists(), f"missing {target}")
 
 if __name__ == "__main__":
     unittest.main()
