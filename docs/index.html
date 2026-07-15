@@ -1,0 +1,11 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Noxen Space</title><style>body{margin:0;background:#050816;color:white;overflow:hidden;font-family:Inter,Arial}canvas{width:100vw;height:100vh}#tip{position:fixed;top:30px;width:100%;text-align:center;letter-spacing:4px}</style></head>
+<body><div id="tip">NOXEN SPACE · AI SECURITY · REVERSE ENGINEERING</div><canvas id="c"></canvas><script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script><script>
+const s=new THREE.Scene();s.background=new THREE.Color(0x050816);const c=document.getElementById('c');const r=new THREE.WebGLRenderer({canvas:c,antialias:true});r.setSize(innerWidth,innerHeight);
+const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,100);cam.position.z=4;
+const light=new THREE.PointLight(0x66ccff,3);light.position.set(2,2,3);s.add(light);s.add(new THREE.AmbientLight(0x334466));
+const planet=new THREE.Mesh(new THREE.SphereGeometry(1,64,64),new THREE.MeshStandardMaterial({color:0x2563eb,roughness:.8}));s.add(planet);
+const ring=new THREE.Mesh(new THREE.TorusGeometry(1.45,.015,16,120),new THREE.MeshBasicMaterial({color:0x7dd3fc}));ring.rotation.x=.4;s.add(ring);
+let drag=false,px=0;addEventListener('pointerdown',e=>{drag=true;px=e.clientX});addEventListener('pointerup',()=>drag=false);addEventListener('pointermove',e=>{if(drag)planet.rotation.y+=(e.clientX-px)*.01,px=e.clientX});
+function a(){requestAnimationFrame(a);planet.rotation.y+=.002;ring.rotation.z+=.001;r.render(s,cam)}a();
+</script></body></html>
