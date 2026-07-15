@@ -1,28 +1,49 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
   <title id="title">Noxen index</title>
-  <desc id="desc">A restrained monochrome cover using debugger addresses and a radar-like construction.</desc>
+  <desc id="desc">A restrained animated monochrome cover using debugger addresses and a radar-like construction.</desc>
+  <style>
+    .title-mark{opacity:0;transform:translateY(10px);animation:title-in .9s cubic-bezier(.2,.75,.25,1) .12s forwards}
+    .subtitle{opacity:0;animation:label-in .7s ease .55s forwards}
+    .label-a{opacity:0;animation:label-in .55s ease .75s forwards}
+    .label-b{opacity:0;animation:label-in .55s ease .92s forwards}
+    .label-c{opacity:0;animation:label-in .55s ease 1.09s forwards}
+    .sweep{transform-origin:0 0;animation:radar-sweep 16s linear infinite}
+    .target{animation:target-blink 4.2s ease-in-out infinite}
+    .scan{opacity:0;animation:scan-pass 9s cubic-bezier(.4,0,.2,1) 2s infinite}
+    @keyframes title-in{to{opacity:1;transform:translateY(0)}}
+    @keyframes label-in{to{opacity:1}}
+    @keyframes radar-sweep{to{transform:rotate(360deg)}}
+    @keyframes target-blink{0%,72%,100%{opacity:1}78%{opacity:.25}84%{opacity:.8}}
+    @keyframes scan-pass{0%,8%{opacity:0;transform:translateX(0)}12%{opacity:.45}26%{opacity:0;transform:translateX(1095px)}100%{opacity:0;transform:translateX(1095px)}}
+    @media (prefers-reduced-motion: reduce){
+      .title-mark,.subtitle,.label-a,.label-b,.label-c{animation:none;opacity:1;transform:none}
+      .sweep,.target{animation:none}
+      .scan{display:none;animation:none}
+    }
+  </style>
   <rect width="1200" height="360" fill="#101010"/>
   <g fill="none" stroke="#303030" stroke-width="1">
     <path d="M48 48H1152M48 312H1152M48 48V312M1152 48V312"/>
     <path d="M48 104H1152M48 256H1152" stroke-dasharray="2 8"/>
     <path d="M816 48V312"/>
   </g>
+  <rect class="scan" x="48" y="48" width="3" height="264" fill="#d44"/>
   <g font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace">
-    <text x="76" y="88" fill="#777" font-size="13" letter-spacing="2">INDEX / 2026.07</text>
-    <text x="74" y="204" fill="#f1f1ed" font-size="92" font-weight="600" letter-spacing="-4">Noxen</text>
-    <text x="80" y="244" fill="#999" font-size="15" letter-spacing="1.5">reverse / build / repeat</text>
-    <text x="842" y="86" fill="#777" font-size="12">0x004E4F58</text>
-    <text x="842" y="108" fill="#777" font-size="12">0x00454E20</text>
-    <text x="842" y="286" fill="#777" font-size="12">selected work →</text>
+    <text class="label-a" x="76" y="88" fill="#777" font-size="13" letter-spacing="2">INDEX / 2026.07</text>
+    <text class="title-mark" x="74" y="204" fill="#f1f1ed" font-size="92" font-weight="600" letter-spacing="-4">Noxen</text>
+    <text class="subtitle" x="80" y="244" fill="#999" font-size="15" letter-spacing="1.5">reverse / build / repeat</text>
+    <text class="label-a" x="842" y="86" fill="#777" font-size="12">0x004E4F58</text>
+    <text class="label-b" x="842" y="108" fill="#777" font-size="12">0x00454E20</text>
+    <text class="label-c" x="842" y="286" fill="#777" font-size="12">selected work →</text>
   </g>
   <g transform="translate(984 180)" fill="none">
     <circle r="78" stroke="#444"/>
     <circle r="42" stroke="#303030"/>
     <path d="M-92 0H92M0-92V92" stroke="#303030"/>
     <path d="M-55 55L55-55" stroke="#252525"/>
-    <circle cx="24" cy="-31" r="4" fill="#d44" stroke="none"/>
+    <circle class="target" cx="24" cy="-31" r="4" fill="#d44" stroke="none"/>
     <circle cx="-38" cy="22" r="3" fill="#aaa" stroke="none"/>
-    <path d="M0 0L24-31" stroke="#777"/>
+    <g class="sweep"><path d="M0 0L0-78" stroke="#777"/><path d="M0-70L6-62" stroke="#555"/></g>
   </g>
   <rect x="48" y="48" width="5" height="264" fill="#d44"/>
 </svg>
