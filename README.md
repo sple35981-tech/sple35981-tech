@@ -1,33 +1,75 @@
-# Noxen
+<p align="center">
+  <img src="./assets/banner.svg" alt="Noxen — AI Security, Reverse Engineering and Open Source" width="100%" />
+</p>
 
-**Reverse engineering · security tooling · practical automation**
+<p align="center">
+  <strong>Turning repetitive security work into tools that can be inspected, rerun and improved.</strong>
+</p>
 
-I like taking messy, repetitive security work and turning it into tools I can rerun, inspect, and improve. Most days I am somewhere between Windows and Kali, reading code, breaking down binaries, or building small utilities around CTF and authorized security research.
+<p align="center">
+  <a href="https://github.com/sple35981-tech?tab=repositories">Projects</a>
+  ·
+  <a href="https://github.com/sple35981-tech/claude-cc-switch-bat">Featured repository</a>
+  ·
+  <a href="mailto:sple35981@gmail.com">Email</a>
+</p>
 
-中文：主要折腾软件逆向、安全工具、CTF 和本地开发环境。
+## About
 
-## What I am working on
+I work across reverse engineering, security automation and local AI workflows. My focus is practical: build repeatable tooling, keep the process traceable, and document enough that the result can be tested instead of merely demonstrated.
 
-- Traceable workflows for AI-assisted reverse engineering
-- Small cross-platform tools for security and development environments
-- Offline knowledge systems for CTF practice and lab work
+中文：主要折腾软件逆向、安全自动化、CTF、本地 AI 工作流和跨平台开发工具。
 
-## Selected work
+## Current focus
 
-### [claude-cc-switch-bat](https://github.com/sple35981-tech/claude-cc-switch-bat)
+- AI-assisted reverse-engineering workflows with traceable outputs
+- Cross-platform developer and security environment automation
+- Offline knowledge systems for CTF practice and lab research
+- Small tools that reduce setup friction on Windows, Kali Linux and Ubuntu
 
-A cross-platform installer for Claude Code, Codex CLI, Hermes Agent, and CC Switch. It includes dry-run support, network checks, temporary proxy configuration, and CI coverage across Windows, macOS, and Linux.
+## Featured project
 
-## Working environment
+<table>
+  <tr>
+    <td width="72%" valign="top">
+      <h3><a href="https://github.com/sple35981-tech/claude-cc-switch-bat">claude-cc-switch-bat</a></h3>
+      <p>A cross-platform installer and environment bootstrapper for Claude Code, Codex CLI, Hermes Agent and CC Switch.</p>
+      <p>Includes dry-run support, network checks, temporary proxy configuration and CI coverage across Windows, macOS and Linux.</p>
+    </td>
+    <td width="28%" valign="top">
+      <strong>Focus</strong><br><br>
+      Installation<br>
+      Automation<br>
+      Cross-platform<br>
+      China-friendly setup
+    </td>
+  </tr>
+</table>
 
-`Python` · `Bash` · `PowerShell` · `Git`
+## Toolbox
 
-`Windows` · `Kali Linux` · `Ubuntu` · `Docker`
+`Python` · `Bash` · `PowerShell` · `Git` · `Docker`
 
-`Reverse engineering` · `CTF` · `Security automation` · `Local LLM workflows`
+`Windows` · `Kali Linux` · `Ubuntu`
 
-## A small note
+`Reverse Engineering` · `CTF` · `Security Automation` · `Local LLM Workflows`
 
-Some reverse-engineering and security experiments stay private until the documentation, safety boundaries, and reproduction steps are in good shape.
+## Principles
 
-For project-specific questions, please use the issue tracker in the relevant repository.
+```text
+Build for repeatability.
+Keep evidence traceable.
+Prefer working tools over impressive demos.
+```
+
+<details>
+  <summary><strong>Why some projects are private</strong></summary>
+  <br>
+  Some reverse-engineering and security experiments remain private until their documentation, safety boundaries and reproduction steps are ready. Public repositories are intended to be understandable and usable without hidden context.
+</details>
+
+<br>
+
+<p align="center">
+  <sub>Security research should stay authorized, reproducible and useful.</sub>
+</p>
